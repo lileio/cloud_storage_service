@@ -67,7 +67,11 @@ func (gcs *GoogleCloudStorage) Store(ctx context.Context, filename string, data 
 	o := gcs.bucket.Object(filename)
 	w := o.NewWriter(ctx)
 
-	// w.Attrs().Metadata = metadata
+	w.ObjectAttrs = gstorage.ObjectAttrs{
+		Name:     filename,
+		Metadata: metadata,
+	}
+
 	_, err := w.Write(data)
 	if err != nil {
 		return err
@@ -78,4 +82,9 @@ func (gcs *GoogleCloudStorage) Store(ctx context.Context, filename string, data 
 	}
 
 	return nil
+}
+
+func (gcs *GoogleCloudStorage) Delete(ctx context.Context, filename string) error {
+	o := gcs.bucket.Object(filename)
+	return o.Delete(ctx)
 }

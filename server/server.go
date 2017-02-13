@@ -35,3 +35,14 @@ func (s Server) Store(ctx context.Context, r *cloud_storage_service.StoreRequest
 		Master:   r.Master,
 	}, nil
 }
+
+func (s Server) Delete(ctx context.Context, r *cloud_storage_service.DeleteRequest) (*cloud_storage_service.DeleteResponse, error) {
+	err := s.Storage.Delete(ctx, r.Filename)
+	if err != nil {
+		return nil, err
+	}
+
+	return &cloud_storage_service.DeleteResponse{
+		Filename: r.Filename,
+	}, nil
+}

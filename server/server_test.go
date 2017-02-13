@@ -25,7 +25,7 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
-func TestStore(t *testing.T) {
+func TestStoreDelete(t *testing.T) {
 	b, err := ioutil.ReadFile("../test/testfile.txt")
 	assert.Nil(t, err)
 
@@ -39,4 +39,12 @@ func TestStore(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.NotEmpty(t, res.Filename)
+
+	dreq := &cloud_storage_service.DeleteRequest{
+		Filename: "testfile.txt",
+	}
+	dres, err := s.Delete(ctx, dreq)
+
+	assert.Nil(t, err)
+	assert.NotEmpty(t, dres.Filename)
 }
