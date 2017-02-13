@@ -1,0 +1,32 @@
+syntax = "proto3";
+package cloud_storage_service;
+
+message StoreRequest {
+  string filename = 1;
+
+  // The raw data of the object to be stored
+  bytes data = 2;
+
+  // Is the object a master, i.e the original image
+  // (this tells resizing workers, they can resize the image)
+  bool master = 3;
+}
+
+message DeleteRequest {
+  string filename = 1;
+}
+
+message DeleteResponse {
+  string filename = 1;
+}
+
+message StorageObject {
+  string filename = 1;
+  string url = 2;
+  bool master = 3;
+}
+
+service CloudStorageService {
+  rpc Store(StoreRequest) returns (StorageObject) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+}
