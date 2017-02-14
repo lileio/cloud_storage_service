@@ -6,6 +6,8 @@ import (
 	"os"
 	"strings"
 
+	"google.golang.org/api/option"
+
 	log "github.com/Sirupsen/logrus"
 
 	gstorage "cloud.google.com/go/storage"
@@ -13,8 +15,9 @@ import (
 
 type GoogleCloudStorage struct {
 	Storage
-	client *gstorage.Client
-	bucket *gstorage.BucketHandle
+	Options []option.ClientOption
+	client  *gstorage.Client
+	bucket  *gstorage.BucketHandle
 }
 
 func (gcs *GoogleCloudStorage) Setup() error {
@@ -34,7 +37,7 @@ func (gcs *GoogleCloudStorage) Setup() error {
 	}
 
 	ctx := context.Background()
-	client, err := gstorage.NewClient(ctx)
+	client, err := gstorage.NewClient(ctx, gcs.Options...)
 	if err != nil {
 		return err
 	}

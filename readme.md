@@ -1,4 +1,5 @@
 # Cloud Storage Service
+[![wercker status](https://app.wercker.com/status/85d5960d26ff2853e5d7dddcd8372e25/s/master "wercker status")](https://app.wercker.com/project/byKey/85d5960d26ff2853e5d7dddcd8372e25)
 
 Creates bucket on first run if it doesn't exist
 

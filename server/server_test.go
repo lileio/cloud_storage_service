@@ -7,6 +7,8 @@ import (
 	"os"
 	"testing"
 
+	"google.golang.org/api/option"
+
 	"github.com/lileio/cloud_storage_service/cloud_storage_service"
 	"github.com/lileio/cloud_storage_service/storage"
 	"github.com/stretchr/testify/assert"
@@ -15,7 +17,20 @@ import (
 var s Server
 
 func TestMain(m *testing.M) {
-	store := &storage.GoogleCloudStorage{}
+	keyLocation := "../google_key.json"
+	o := []option.ClientOption{}
+
+	key := os.Getenv("GOOGLE_KEY")
+	if key != "" {
+		err := ioutil.WriteFile(keyLocation, []byte(key), os.ModePerm)
+		if err != nil {
+			panic(err)
+		}
+
+		o = append(o, option.WithServiceAccountFile(keyLocation))
+	}
+
+	store := &storage.GoogleCloudStorage{Options: o}
 	err := store.Setup()
 	if err != nil {
 		log.Fatalf("storage setup error: %v", err)
