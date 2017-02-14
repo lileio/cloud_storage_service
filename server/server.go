@@ -33,6 +33,7 @@ func (s Server) Store(ctx context.Context, r *cloud_storage_service.StoreRequest
 	return &cloud_storage_service.StorageObject{
 		Filename: r.Filename,
 		Master:   r.Master,
+		Url:      s.Storage.PublicURL(r.Filename),
 	}, nil
 }
 

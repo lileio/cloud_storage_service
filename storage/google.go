@@ -15,9 +15,10 @@ import (
 
 type GoogleCloudStorage struct {
 	Storage
-	Options []option.ClientOption
-	client  *gstorage.Client
-	bucket  *gstorage.BucketHandle
+	Options    []option.ClientOption
+	client     *gstorage.Client
+	bucket     *gstorage.BucketHandle
+	bucketName string
 }
 
 func (gcs *GoogleCloudStorage) Setup() error {
@@ -25,6 +26,8 @@ func (gcs *GoogleCloudStorage) Setup() error {
 	if bktName == "" {
 		return errors.New("GOOGLE_STORAGE_BUCKET env must be set")
 	}
+
+	gcs.bucketName = bktName
 
 	projectID := os.Getenv("GOOGLE_STORAGE_PROJECT_ID")
 	if projectID == "" {
@@ -64,6 +67,11 @@ func (gcs *GoogleCloudStorage) Setup() error {
 	gcs.bucket = bkt
 
 	return nil
+}
+
+func (gcs *GoogleCloudStorage) PublicURL(filename string) string {
+	return "https://storage.googleapis.com/" + gcs.bucketName + "/" + filename
+
 }
 
 func (gcs *GoogleCloudStorage) Store(ctx context.Context, filename string, data []byte, metadata map[string]string) error {
