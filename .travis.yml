@@ -1,0 +1,15 @@
+language: go
+sudo: required
+services:
+  - docker
+go:
+  - 1.7
+
+script: go test ./...
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    make docker
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push lileio/cloud_storage_service
+    fi
