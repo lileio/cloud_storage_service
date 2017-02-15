@@ -25,9 +25,9 @@ Specific object ACL's and URL generation are coming soon.
 The service will create the cloud storage bucket on first run if it doesn't exist
 
 ```
-GOOGLE_STORAGE_BUCKET="some-bucket"
-GOOGLE_STORAGE_PROJECT_ID="googleprojectid-20142"
-GOOGLE_STORAGE_LOCATION="eu"
+GOOGLE_STORAGE_BUCKET=some-bucket
+GOOGLE_STORAGE_PROJECT_ID=googleprojectid-20142
+GOOGLE_STORAGE_LOCATION=eu
 ```
 
 ## Development
