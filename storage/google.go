@@ -71,7 +71,6 @@ func (gcs *GoogleCloudStorage) Setup() error {
 
 func (gcs *GoogleCloudStorage) PublicURL(filename string) string {
 	return "https://storage.googleapis.com/" + gcs.bucketName + "/" + filename
-
 }
 
 func (gcs *GoogleCloudStorage) Store(ctx context.Context, filename string, data []byte, metadata map[string]string) error {
