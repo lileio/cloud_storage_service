@@ -1,5 +1,5 @@
 # Cloud Storage Service
-[![wercker status](https://app.wercker.com/status/993e7084c06c3188a225e9f5b307b340/s/master "wercker status")](https://app.wercker.com/project/byKey/993e7084c06c3188a225e9f5b307b340)
+[![Build Status](https://travis-ci.org/lileio/cloud_storage_service.svg?branch=master)](https://travis-ci.org/lileio/cloud_storage_service)
 
 A gRPC service made with the [Lile generator](https://github.com/lileio/lile) for storing object, files etc in cloud storage like Google Cloud Storage, AWS S3 or similar (PR's welcome!)
 
@@ -17,6 +17,14 @@ The cloud storage service is for storing objects that other services may require
 Be aware that for this url to work the bucket in question must be public.
 
 Specific object ACL's and URL generation are coming soon.
+
+## Docker
+
+Builds (based on Alpine) of master (after test runs) are available at
+
+```
+docker pull lileio/cloud_storage_service
+```
 
 ## Setup
 

@@ -6,12 +6,12 @@ go:
   - 1.7
 
 script:
-  - go get -t
-  - make test
+  - go get -t ./...
+  - GOOGLE_STORAGE_BUCKET="lileiotest" GOOGLE_STORAGE_PROJECT_ID="grpc-149412" GOOGLE_STORAGE_LOCATION="eu" make test
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    make docker
+    make docker;
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push lileio/cloud_storage_service
+    docker push lileio/cloud_storage_service;
     fi
