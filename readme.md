@@ -41,5 +41,3 @@ GOOGLE_STORAGE_LOCATION=eu
 ## Development
 
 PR's are welcome. Testing currently is done end to end with communication with the services in question.
-
-See the wercker.yml for an example of CI tests that are run.
