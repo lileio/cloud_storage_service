@@ -6,10 +6,6 @@ message StoreRequest {
 
   // The raw data of the object to be stored
   bytes data = 2;
-
-  // Is the object a master, i.e the original image
-  // (this tells resizing workers, they can resize the image)
-  bool master = 3;
 }
 
 message DeleteRequest {
@@ -23,7 +19,6 @@ message DeleteResponse {
 message StorageObject {
   string filename = 1;
   string url = 2;
-  bool master = 3;
 }
 
 service CloudStorageService {
