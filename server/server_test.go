@@ -49,7 +49,6 @@ func TestStoreDelete(t *testing.T) {
 	req := &cloud_storage_service.StoreRequest{
 		Filename: "testfile.txt",
 		Data:     b,
-		Master:   true,
 	}
 	res, err := s.Store(ctx, req)
 
@@ -57,7 +56,6 @@ func TestStoreDelete(t *testing.T) {
 	fmt.Printf("res = %+v\n", res)
 	assert.NotEmpty(t, res.Filename)
 	assert.NotEmpty(t, res.Url)
-	assert.NotEmpty(t, res.Master)
 
 	dreq := &cloud_storage_service.DeleteRequest{
 		Filename: "testfile.txt",

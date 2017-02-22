@@ -1,8 +1,6 @@
 package server
 
 import (
-	"strconv"
-
 	context "golang.org/x/net/context"
 
 	"github.com/lileio/cloud_storage_service/cloud_storage_service"
@@ -15,15 +13,11 @@ type Server struct {
 }
 
 func (s Server) Store(ctx context.Context, r *cloud_storage_service.StoreRequest) (*cloud_storage_service.StorageObject, error) {
-	metadata := map[string]string{
-		"master": strconv.FormatBool(r.Master),
-	}
-
 	err := s.Storage.Store(
 		ctx,
 		r.Filename,
 		r.Data,
-		metadata,
+		map[string]string{},
 	)
 
 	if err != nil {
@@ -32,7 +26,6 @@ func (s Server) Store(ctx context.Context, r *cloud_storage_service.StoreRequest
 
 	return &cloud_storage_service.StorageObject{
 		Filename: r.Filename,
-		Master:   r.Master,
 		Url:      s.Storage.PublicURL(r.Filename),
 	}, nil
 }
