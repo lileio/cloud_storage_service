@@ -9,7 +9,7 @@ import (
 
 	"google.golang.org/api/option"
 
-	"github.com/lileio/cloud_storage_service/cloud_storage_service"
+	"github.com/lileio/cloud_storage_service"
 	"github.com/lileio/cloud_storage_service/storage"
 	"github.com/stretchr/testify/assert"
 )

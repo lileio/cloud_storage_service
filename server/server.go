@@ -3,7 +3,7 @@ package server
 import (
 	context "golang.org/x/net/context"
 
-	"github.com/lileio/cloud_storage_service/cloud_storage_service"
+	"github.com/lileio/cloud_storage_service"
 	"github.com/lileio/cloud_storage_service/storage"
 )
 
