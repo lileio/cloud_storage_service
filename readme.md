@@ -36,6 +36,7 @@ The service will create the cloud storage bucket on first run if it doesn't exis
 GOOGLE_STORAGE_BUCKET=some-bucket
 GOOGLE_STORAGE_PROJECT_ID=googleprojectid-20142
 GOOGLE_STORAGE_LOCATION=eu
+GOOGLE_APPLICATION_CREDENTIALS=/creds/google.json
 ```
 
 ## Development
