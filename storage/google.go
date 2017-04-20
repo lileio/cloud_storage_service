@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/api/option"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 
 	gstorage "cloud.google.com/go/storage"
 )
